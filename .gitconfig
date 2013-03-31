@@ -1,0 +1,9 @@
+[user]
+	name = Ana Krivokapic
+[core]
+	editor = emacs
+[color "diff"]
+       whitespace = red reverse
+[color]
+	diff = auto
+	ui = auto
