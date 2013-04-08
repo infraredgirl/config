@@ -1,10 +1,10 @@
 [user]
-	name = Ana Krivokapic
+    name = Ana Krivokapic
 [core]
-	editor = emacs
-	excludesfile = ~/.gitignore
+    editor = emacs
+    excludesfile = ~/.gitignore
 [color "diff"]
-       whitespace = red reverse
+    whitespace = red reverse
 [color]
-	diff = auto
-	ui = auto
+    diff = auto
+    ui = auto
