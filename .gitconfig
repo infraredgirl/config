@@ -10,3 +10,5 @@
     ui = auto
 [alias]
     patch = format-patch -M -C --patience --full-index -1
+[help]
+    autocorrect = 1
