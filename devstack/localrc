@@ -1,0 +1,44 @@
+ADMIN_PASSWORD=blablabla
+MYSQL_PASSWORD=blablabla
+RABBIT_PASSWORD=blablabla
+SERVICE_PASSWORD=blablabla
+SERVICE_TOKEN=blablabla
+
+DEST=/opt/stack
+
+DATA_DIR=$DEST/data
+# no loging to file, it's far to big
+# LOGFILE=$DATA_DIR/logs/stack.log
+# SCREEN_LOGDIR=$DATA_DIR/logs
+VERBOSE=True
+disable_service mysql
+enable_service postgresql
+disable_service rabbit
+enable_service qpid
+IMAGE_URLS="http://berrange.fedorapeople.org/images/2012-11-15/f17-x86_64-openstack-sda.qcow2"
+#OFFLINE=True
+
+disable_service n-net
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+enable_service q-lbaas
+enable_service quantum
+## Optional, to enable tempest configuration as part of devstack
+enable_service tempest
+
+CEILOMETER_BACKEND=mongo
+enable_service ceilometer-acompute ceilometer-acentral ceilometer-collector ceilometer-api
+
+ENABLED_SERVICES+=,swift
+SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5
+SWIFT_REPLICAS=1
+
+ENABLED_SERVICES+=,heat,h-api,h-api-cfn,h-api-cw,h-eng
+## It would also be useful to automatically download and register VM images that Heat can launch.
+# 64bit image (~660MB)
+#IMAGE_URLS+=",http://fedorapeople.org/groups/heat/prebuilt-jeos-images/F17-x86_64-cfntools.qcow2"
+# 32bit image (~640MB)
+#IMAGE_URLS+=",http://fedorapeople.org/groups/heat/prebuilt-jeos-images/F17-i386-cfntools.qcow2"
