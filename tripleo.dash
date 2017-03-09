@@ -1,0 +1,40 @@
+# Custom Gerrit dashboard for my TripleO repos
+
+[dashboard]
+title = TripleO Inbox
+description = TripleO Review Inbox
+foreach = (project:openstack/tripleo-specs OR
+           project:openstack/tripleo-common OR
+           project:openstack/instack-undercloud OR
+           project:openstack/python-tripleoclient OR
+           project:openstack/tripleo-ui OR
+           project:openstack/tripleo-validations OR	   
+           project:openstack/tripleo-docs) status:open NOT label:Workflow<=-1 NOT label:Code-Review<=-2
+
+[section "You are a reviewer, but haven't voted in the current revision"]
+query = NOT owner:self reviewer:self NOT label:Code-Review>=-2,self is:mergeable
+
+[section "tripleo-ui"]
+query = NOT reviewer:self NOT owner:self project:openstack/tripleo-ui is:mergeable
+
+[section "tripleo-common"]
+query = NOT reviewer:self NOT owner:self project:openstack/tripleo-common is:mergeable
+
+[section "python-tripleoclient"]
+query = NOT reviewer:self NOT owner:self project:openstack/python-tripleoclient is:mergeable
+
+[section "tripleo-validations"]
+query = NOT reviewer:self NOT owner:self project:openstack/tripleo-validations is:mergeable
+
+[section "instack-undercloud"]
+query = NOT reviewer:self NOT owner:self project:openstack/instack-undercloud is:mergeable
+
+[section "tripleo-docs"]
+query = NOT reviewer:self NOT owner:self project:openstack/tripleo-docs is:mergeable
+
+[section "tripleo-specs"]
+query = NOT reviewer:self NOT owner:self project:openstack/tripleo-specs is:mergeable
+
+[section "No Negative Feedback"]
+query = NOT reviewer:self label:Verified>=1,jenkins NOT owner:self NOT label:Code-Review<=-1 NOT label:Code-Review>=2 limit:50
+
